@@ -1,0 +1,33 @@
+# 📦 Node modules - always ignore this
+node_modules/
+
+# 🔑 Environment files
+.env
+.env.local
+.env.*.local
+
+# 📝 Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ⚙️ System files
+.DS_Store
+Thumbs.db
+
+# 🚫 OS-generated files
+ehthumbs.db
+Icon?
+desktop.ini
+
+# 🧪 Optional test or coverage
+coverage/
+*.lcov
+
+# 💻 VS Code project settings (optional)
+.vscode/
+
+# 🔧 Build artifacts (optional, for future)
+dist/
+build/
