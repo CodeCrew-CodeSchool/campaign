@@ -13,13 +13,13 @@ This is an email generator built with Node.js, Express, and the Gemini Flash API
 Node.js installed (v14 or higher recommended)
 
 
-A Gemini API key from Google AI Studio
+A Gemini API key from Google AI Studio > https://makersuite.google.com/app/apikey
 
 
 
 📦 1. Clone the project
 
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/CodeCrew-CodeSchool/campaign.git
 
 cd your-repo-name/backend
 
