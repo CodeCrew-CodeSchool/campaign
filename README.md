@@ -4,11 +4,11 @@ Our email campaign builder is a web application that leverages natural language 
 Bruce Brown, Kadarius Clemons
 
 
-🚀 Run the AI Email Generator Locally
+Run the AI Email Generator Locally
 
 This is an email generator built with Node.js, Express, and the Gemini Flash API. It creates personalized marketing email campaigns for any business.
 
-🛠 Prerequisites
+Prerequisites
 
 Node.js installed (v14 or higher recommended)
 
@@ -17,19 +17,19 @@ A Gemini API key from Google AI Studio > https://makersuite.google.com/app/apike
 
 
 
-📦 1. Clone the project
+1. Clone the project
 
 git clone https://github.com/CodeCrew-CodeSchool/campaign.git
 
 cd your-repo-name/backend
 
 
-📁 2. Install dependencies
+2. Install dependencies
 
 npm install
 
 
-🔐 3. Set up your .env file
+3. Set up your .env file
 
 Create a file named .env inside the backend/ folder:
 
@@ -37,7 +37,7 @@ GEMINI_API_KEY=your-real-gemini-api-key-here
 
 You can copy the format from .env.example.
 
-▶️ 4. Run the backend server
+4. Run the backend server
 
 node server.js
 
@@ -46,7 +46,7 @@ You should see:
 Server running on http://localhost:5000
 
 
-🌐 5. Open the app in your browser
+5. Open the app in your browser
 
 Open the index.html file in your browser (located in the backend/ folder) by double-clicking it, or right-click and choose “Open with browser.”
 
