@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartEmail Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="main-card">
+      <div class="header">
+        <h1>SmartEmailer</h1>
+        <p class="subtitle">Create personalized marketing emails and send them to thousands of prospects instantly.</p>
+      </div>
+      <form onsubmit="generateEmails(event)">
+        <div class="form-group">
+          <label for="userInput">Product/Service Description</label>
+          <textarea 
+            id="userInput" 
+            placeholder="e.g., I sell handmade essential oil candles..."
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="recipientName">Recipient Name (Optional)</label>
+          <input 
+            type="text" 
+            id="recipientName" 
+            placeholder="Enter a name to personalize (e.g., Sarah)"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Choose Email Volume</label>
+          <div class="volume-selector">
+            <div class="volume-option" onclick="selectVolume(100, this)">
+              <div class="volume-number">100</div>
+              <div class="volume-label">Starter Campaign</div>
+              <div class="volume-price">Free</div>
+            </div>
+            <div class="volume-option" onclick="selectVolume(200, this)">
+              <div class="volume-number">200</div>
+              <div class="volume-label">Basic Campaign</div>
+              <div class="volume-price">Free</div>
+            </div>
+            <div class="volume-option" onclick="selectVolume(500, this)">
+              <div class="volume-number">500</div>
+              <div class="volume-label">Pro Campaign</div>
+              <div class="volume-price">Free</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 📥 Recipient Email Input Section -->
+        <div id="recipientSection" class="form-group email-setup active">
+          <h3>📥 Paste or Upload Recipients</h3>
+          <label for="recipientEmails">Paste Emails (comma-separated or one per line)</label>
+          <textarea id="recipientEmails" placeholder="e.g., john@example.com, jane@example.com" rows="4"></textarea>
+
+          <label for="csvUpload" style="margin-top: 1rem;">Or Upload CSV File</label>
+          <input type="file" id="csvUpload" accept=".csv" onchange="handleCSVUpload(event)">
+
+          <p style="margin-top: 0.5rem; color: var(--text-secondary);">
+            <span id="recipientCount">0</span> recipients added
+          </p>
+        </div>
+
+        <div id="emailSetup" class="email-setup">
+          <h3>📧 Email Configuration</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="senderName">Your Name</label>
+              <input type="text" id="senderName" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="senderEmail">Your Email</label>
+              <input type="email" id="senderEmail" placeholder="john@example.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="leadSource">Lead Source</label>
+            <select id="leadSource">
+              <option value="purchased">Purchased Lead List</option>
+              <option value="scraped">Web Scraped Leads</option>
+              <option value="uploaded">Uploaded CSV</option>
+              <option value="api">API Integration</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="generate-btn" id="generateBtn">
+          Generate Marketing Emails
+        </button>
+
+        <button type="button" class="send-btn" id="sendBtn" onclick="sendEmails()">
+          Send <span id="selectedVolume">0</span> Emails Now
+        </button>
+      </form>
+
+      <div id="progressSection" class="progress-section">
+        <h3>📊 Sending Progress</h3>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-info">
+          <span id="progressText">Preparing to send...</span>
+          <span id="progressCount">0 / 0</span>
+        </div>
+      </div>
+
+      <div id="output" class="email-preview"></div>
+    </div>
+  </div>
+  <div id="output"></div>
+<div id="emailNavigator" style="display:none; align-items:center; justify-content:center; gap:1.5rem; margin-top:2rem;">
+  <button id="prevEmail" aria-label="Previous Email">&larr;</button>
+  <div id="singleEmail" style="flex:1; min-width:0;"></div>
+  <button id="nextEmail" aria-label="Next Email">&rarr;</button>
+</div>
+<div id="recipientList" class="recipient-list"></div>
+<script src="script.js"></script>
+</body>
+</html>
