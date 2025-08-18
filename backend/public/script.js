@@ -124,6 +124,7 @@ async function generateEmails(event) {
   generateBtn.disabled = true;
   generateBtn.innerHTML = '<span class="loading"></span>Generating amazing emails...';
 
+  // Show "crafting" message
   output.innerHTML = `
     <div class="empty-state">
       <div class="empty-state-icon">✨</div>
@@ -151,6 +152,9 @@ async function generateEmails(event) {
 
       currentEmailIndex = 0;
       showEmail(currentEmailIndex);
+
+      // 👇 clear the "crafting" message after success
+      output.innerHTML = "";
 
       if (selectedEmailVolume > 0) {
         document.getElementById('sendBtn').classList.add('active');
