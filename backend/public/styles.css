@@ -581,3 +581,35 @@
   margin-top: 0.5em;
   font-size: 0.98em;
 }
+.navbar {
+  background-color: transparent;
+  padding: 1rem 0;
+  color: white;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-container a {
+  color: #e0e0ff;
+  margin-left: 1.5rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-container a:hover {
+  text-decoration: underline;
+}
+.navbar-subtitle {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.navbar-subtitle p {
+  margin: 0;
+  font-size: 1rem;
+  color: #e0e0ff; /* slightly lighter than white */
+}
