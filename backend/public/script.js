@@ -150,6 +150,7 @@ async function generateEmails(event) {
       });
 
       currentEmailIndex = 0;
+      output.innerHTML = "";
       showEmail(currentEmailIndex);
 
       if (selectedEmailVolume > 0) {
@@ -191,4 +192,95 @@ function copyEmail(index) {
     }, 2000);
   });
 }
-  
+//Send Emails
+// Send Emails
+async function sendEmails() {
+  if (selectedEmailVolume === 0) {
+    alert("Please select an email volume first.");
+    return;
+  }
+
+  if (generatedEmails.length === 0) {
+    alert("Please generate emails first.");
+    return;
+  }
+
+  const senderName = document.getElementById('senderName').value.trim();
+  const senderEmail = document.getElementById('senderEmail').value.trim();
+  const leadSource = document.getElementById('leadSource').value;
+  const recipients = updateRecipientCount(); // <-- this gives us actual recipients
+
+  if (!senderName || !senderEmail) {
+    alert("Please enter your name and email.");
+    return;
+  }
+
+  if (recipients.length === 0) {
+    alert("Please enter at least one valid recipient email.");
+    return;
+  }
+
+  const actualCount = recipients.length; // ✅ real number of emails being sent
+
+  const progressSection = document.getElementById('progressSection');
+  const progressFill = document.getElementById('progressFill');
+  const progressText = document.getElementById('progressText');
+  const progressCount = document.getElementById('progressCount');
+  const sendBtn = document.getElementById('sendBtn');
+
+  progressSection.classList.add('active');
+  sendBtn.disabled = true;
+  sendBtn.innerHTML = '<span class="loading"></span>Sending Emails...';
+
+  try {
+    const response = await fetch("http://localhost:5000/send-mass-emails", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        emails: generatedEmails,
+        recipients,
+        volume: actualCount, // ✅ send real count to backend too
+        senderName,
+        senderEmail,
+        leadSource,
+        productDescription: document.getElementById("userInput").value
+      })
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += Math.random() * 10;
+        if (progress >= 100) {
+          clearInterval(interval);
+          progress = 100;
+          progressText.textContent = `✅ Successfully sent ${actualCount.toLocaleString()} emails!`;
+          progressCount.textContent = `${actualCount} / ${actualCount}`;
+          sendBtn.innerHTML = '🎉 Campaign Completed!';
+          sendBtn.style.background = 'linear-gradient(135deg, var(--success-color), #059669)';
+          setTimeout(() => {
+            progressSection.classList.remove('active');
+            sendBtn.disabled = false;
+            sendBtn.innerHTML = `Send ${selectedEmailVolume.toLocaleString()} Emails Now`;
+            sendBtn.style.background = '';
+            progressFill.style.width = '0%';
+          }, 5000);
+        } else {
+          const sentSoFar = Math.round(progress * actualCount / 100);
+          progressText.textContent = `Sending emails... ${Math.round(progress)}% complete`;
+          progressCount.textContent = `${sentSoFar} / ${actualCount}`;
+        }
+        progressFill.style.width = progress + '%';
+      }, 200);
+    } else {
+      throw new Error(data.message || "Failed to send emails");
+    }
+  } catch (err) {
+    console.error(err);
+    progressText.textContent = "❌ Failed to send emails.";
+    sendBtn.disabled = false;
+    sendBtn.innerHTML = `Send ${selectedEmailVolume.toLocaleString()} Emails Now`;
+  }
+}
