@@ -535,7 +535,7 @@
   height: 2.5rem;
   font-size: 1.5rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 7s;
   box-shadow: 0 2px 8px rgba(99,102,241,0.08);
 }
 #emailNavigator button:disabled {
