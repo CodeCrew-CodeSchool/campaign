@@ -583,7 +583,7 @@
 .logo {
   font-size: 4rem;
   font-weight: bold;
-  background: linear-gradient(to right, orange, purple); /* purple → blue */
+  background: linear-gradient(to right, orange); /* purple → blue */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
