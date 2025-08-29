@@ -5,22 +5,22 @@ Contributors: Bruce Brown, Kadarius Clemons
 
 Tech Stack
 Frontend:  
-HTML, CSS, Vanilla JavaScript  
+- HTML, CSS, Vanilla JavaScript  
 
 Backend:  
-Node.js + Express  
-Gemini 1.5 Flash API (AI)  
-Resend API (email delivery)   
+- Node.js + Express  
+- Gemini 1.5 Flash API (AI)  
+- Resend API (email delivery)   
 
 Data Science & Evaluation:
-NLTK, textstat, pandas
+- NLTK, textstat, pandas
 
 ---
 
 Features
-AI-generated 3-part email sequences
-Integrated email sending with Resend
-Simple one-page UI
+- AI-generated 3-part email sequences
+- Integrated email sending with Resend
+- Simple one-page UI
 
 ---
 
