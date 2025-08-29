@@ -3,6 +3,32 @@ Our email campaign builder is a web application that leverages natural language 
 Contributors: Bruce Brown, Kadarius Clemons
 
 
+Tech Stack
+Frontend:  
+HTML, CSS, Vanilla JavaScript  
+
+Backend:  
+Node.js + Express  
+Gemini 1.5 Flash API (AI)  
+Resend API (email delivery)   
+
+Data Science & Evaluation:
+NLTK, textstat, pandas
+
+---
+
+Features
+AI-generated 3-part email sequences
+Integrated email sending with Resend
+Simple one-page UI
+
+---
+
+Testing
+Metrics used: BLEU score, Flesch Reading Ease, word count.  
+Testing performed with Google Colab notebooks.
+
+
 Run the AI Email Generator Locally
 
 This is an email generator built with Node.js, Express, and the Gemini Flash API for content generation, and Resend for email delivery. It creates personalized marketing email campaigns and can send them directly to your recipients.
